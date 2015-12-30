@@ -1,0 +1,22 @@
+{
+  "name": "fcc-parser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MityaDSCH/fcc-parser.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MityaDSCH/fcc-parser/issues"
+  },
+  "homepage": "https://github.com/MityaDSCH/fcc-parser#readme",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}
