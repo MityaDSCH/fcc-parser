@@ -10,11 +10,11 @@ app.use('/', express.static('./'));
 
 app.route('/')
   .get(function(req, res) {
-    console.log(req.connection.remoteAddress);
+    console.log(req.headers);
     res.json({
-      ipaddress: null,
-      language: null,
-      software: null
+      ipaddress: req.ip,
+      language: req.get('user-agent'),
+      software: req.get('user-agent')
     });
   });
 
