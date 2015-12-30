@@ -1,20 +1,29 @@
 'use strict';
 
 var express = require('express');
+var uaParser = require('ua-parser-js');
 
 var app = express();
-
-var path = process.cwd();
 
 app.use('/', express.static('./'));
 
 app.route('/')
   .get(function(req, res) {
-    console.log(req.headers);
+
+    var ip = req.ip;
+    if (ip.lastIndexOf(':') !== -1) {
+      ip = ip.substr(ip.lastIndexOf(':') + 1, ip.length - 1);
+    }
+
+    var lang = req.headers['accept-language'];
+    lang = lang.substr(0, lang.indexOf(','));
+
+    var uaInfo = uaParser(req.headers['user-agent']);
+
     res.json({
-      ipaddress: req.ip,
-      language: req.get('user-agent'),
-      software: req.get('user-agent')
+      ipaddress: ip,
+      language: lang,
+      software: uaInfo.os.name + ' ' + uaInfo.os.version + ', ' + uaInfo.browser.name + ': ' + uaInfo.browser.version
     });
   });
 
